@@ -4,16 +4,18 @@ from MyScheduler import MyScheduler
 
 def test_add_to_scheduler():
     scheduler_list = []
-    scheduler_list = my_scheduler._MyScheduler__add_to_myscheduler("Wake up", "6:00", scheduler_list)
+    scheduler_list = my_scheduler._MyScheduler__add_to_myscheduler("Wake up",
+                                                        "6:00", scheduler_list)
     assert (scheduler_list[0].name == "Wake up")
     assert (scheduler_list[0].time == "6:00")
 
 def test_remove_from_scheduler():
     scheduler_list = []
 
-    scheduler_list = my_scheduler._MyScheduler__add_to_myscheduler("Wake up", "6:00", scheduler_list)
-    scheduler_list = my_scheduler._MyScheduler__add_to_myscheduler("Exercise", "7:00", scheduler_list)
-
+    scheduler_list = my_scheduler._MyScheduler__add_to_myscheduler("Wake up",
+                                                        "6:00", scheduler_list)
+    scheduler_list = my_scheduler._MyScheduler__add_to_myscheduler("Exercise",
+                                                        "7:00", scheduler_list)
 
     '''
     After adding 2 activity to my scheduler, 
@@ -24,7 +26,8 @@ def test_remove_from_scheduler():
         2         07:00     Exercise 
     '''
 
-    scheduler_list = my_scheduler._MyScheduler__remove_from_myscheduler(1, scheduler_list)
+    scheduler_list = my_scheduler._MyScheduler__remove_from_myscheduler(1,
+                                                                scheduler_list)
 
     '''
     After removing number 1 activity from my scheduler, 
@@ -41,11 +44,9 @@ def test_change_scheduler():
     scheduler_list = []
 
     scheduler_list = my_scheduler._MyScheduler__add_to_myscheduler("Wake up",
-                                                                   "6:00",
-                                                                   scheduler_list)
+                                                        "6:00", scheduler_list)
     scheduler_list = my_scheduler._MyScheduler__add_to_myscheduler("Exercise",
-                                                                   "7:00",
-                                                                   scheduler_list)
+                                                        "7:00", scheduler_list)
 
     '''
     After adding 2 activity to my scheduler, 
@@ -56,8 +57,8 @@ def test_change_scheduler():
         2         07:00     Exercise 
     '''
 
-    scheduler_list = my_scheduler._MyScheduler__change_myscheduler(2, "Breakfast", "6:30",
-                                                                        scheduler_list)
+    scheduler_list = my_scheduler._MyScheduler__change_myscheduler(2,
+                                        "Breakfast", "6:30", scheduler_list)
 
     '''
     After changing number 2 activity from my scheduler, 
@@ -73,16 +74,15 @@ def test_format_output():
     scheduler_list = []
 
     scheduler_list = my_scheduler._MyScheduler__add_to_myscheduler("Wake up",
-                                                                   "6:00",
-                                                                   scheduler_list)
+                                                    "6:00", scheduler_list)
     scheduler_list = my_scheduler._MyScheduler__add_to_myscheduler("Exercise",
-                                                                   "7:00",
-                                                                   scheduler_list)
+                                                    "7:00", scheduler_list)
 
     schedular_format = schedule_logger.format_output(scheduler_list)
 
     assert (schedular_format["headers"] == "  Index      Time      Activity ")
-    assert (schedular_format["headerFormat"] == " -------    --------  --------- ")
+    assert (schedular_format["headerFormat"] == " -------    --------  "
+                                                "--------- ")
     assert (schedular_format[0] == "    1         6:00     Wake up  ")
     assert (schedular_format[1] == "    2         7:00     Exercise ")
 
@@ -90,11 +90,9 @@ def test_write_to_file_output():
     scheduler_list = []
 
     scheduler_list = my_scheduler._MyScheduler__add_to_myscheduler("Wake up",
-                                                                   "6:00",
-                                                                   scheduler_list)
+                                                        "6:00",scheduler_list)
     scheduler_list = my_scheduler._MyScheduler__add_to_myscheduler("Exercise",
-                                                                   "7:00",
-                                                                   scheduler_list)
+                                                         "7:00",scheduler_list)
 
     schedular_format = schedule_logger.write_to_file(scheduler_list)
 

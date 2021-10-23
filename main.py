@@ -8,6 +8,7 @@ if __name__ == '__main__':
     schedule_logger = ScheduleLogger()
     my_scheduler = MyScheduler("name", "time")
     scheduler_list = []
+    schedule_commands = {"add", "remove", "change", "help", "quit"}
 
     while True:
         """ getting input from user as add for add 'data' in schedule , 
@@ -94,6 +95,7 @@ if __name__ == '__main__':
                    Colors.reset)
             continue
         else:
-            print(Colors.lightgrey, "Pleae enter Valid command, to see all the "
-                                    "command please type 'help' ", Colors.reset)
+            if user_inp not in schedule_commands:
+                print(Colors.lightgrey, "Please enter Valid command, to see "
+                            "all the command please type 'help' ", Colors.reset)
             continue

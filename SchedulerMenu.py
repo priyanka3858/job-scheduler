@@ -12,7 +12,7 @@ class SchedulerMenu:
               Colors.reset)
         print("="*40, '\n')
         print("     Type", Colors.green,"'add'", Colors.reset, "to add activity"
-                                                        "in daily scheduler\n"
+                                                        " in daily scheduler\n"
               "     Type", Colors.yellow,"'change'", Colors.reset,"to modify "
                                           "any activity from daily scheduler\n"
               "     Type", Colors.red,"'remove'", Colors.reset,"to remove "
