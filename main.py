@@ -16,7 +16,8 @@ if __name__ == '__main__':
 
         # input from user
         user_inp = input(
-            "Please enter command for your daily routine: Example ===> add, remove, change: ")
+            "Please enter command for your daily routine (example => add, "
+                                                            "remove, change): ")
 
         try:
             # help command provide user to how to use instructs on command
@@ -28,7 +29,9 @@ if __name__ == '__main__':
             if user_inp.lower() == 'quit':
                 if len(scheduler_list) > 0:
                     print(
-                        "Thank you for using Personal Daily Scheduler, Here is your daily activiy and also daily actiivty saved in text file.")
+                        "Thank you for using Personal Daily Scheduler, Here is "
+                        "your daily activiy and also daily actiivty saved in "
+                        "text file.")
                     output_dict = schedule_logger.format_output(scheduler_list)
                     schedule_logger.printFormat(output_dict)
                     schedule_logger.write_to_file(scheduler_list)
@@ -38,13 +41,13 @@ if __name__ == '__main__':
 
             # add command provide user to add time and activity name in schedule
             if user_inp.lower() == "add":
-                user_inp = input("enter your daily routine name: ")
+                user_inp = input("Enter your daily routine name: ")
                 time_inp = schedule_logger.format_time()
 
                 scheduler_list = my_scheduler._MyScheduler__add_to_myscheduler(
                     user_inp, time_inp, scheduler_list)
 
-                print(Colors.FontColor.blue,
+                print(Colors.blue,
                       "Your schedule has been added to the list",
                       Colors.reset)
 
@@ -57,33 +60,40 @@ if __name__ == '__main__':
                 user_inp = input(
                     "Enter the number of schleulder you want to remove: ")
 
-                scheduler_list = my_scheduler._MyScheduler__remove_from_myscheduler(
+                scheduler_list =\
+                    my_scheduler._MyScheduler__remove_from_myscheduler(
                     user_inp, scheduler_list)
 
                 output_dict = schedule_logger.format_output(scheduler_list)
                 schedule_logger.printFormat(output_dict)
 
-                print(Colors.FontColor.red,
-                      "schedule has been removed from the list",
+                print(Colors.red,
+                      "Schedule has been removed from the list",
                       Colors.reset)
                 continue
 
             # change command provide user to modify data from schedule
             if user_inp.lower() == "change":
                 index = input(
-                    "enter the number of scheduler that you want to change: ")
-                user_inp_value = input("enter name activity name to set:")
+                    "Enter the number of scheduler that you want to change: ")
+                user_inp_value = input("Enter name activity name to set:")
                 time_inp_value = schedule_logger.format_time()
 
                 scheduler_list = my_scheduler._MyScheduler__change_myscheduler(
                     index, user_inp_value, time_inp_value, scheduler_list)
 
-                print(Colors.FontColor.yellow,
-                      "your schedule has been updated",
+                print(Colors.yellow,
+                      "Your schedule has been updated",
                       Colors.reset)
                 output_dict = schedule_logger.format_output(scheduler_list)
                 schedule_logger.printFormat(output_dict)
                 continue
+
         except:
-            print("Invalid input, please enter valid input")
+            print( Colors.lightred, "Invalid input, please enter valid input",
+                   Colors.reset)
+            continue
+        else:
+            print(Colors.lightgrey, "Pleae enter Valid command, to see all the "
+                                    "command please type 'help' ", Colors.reset)
             continue
