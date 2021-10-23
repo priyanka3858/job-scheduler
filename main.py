@@ -20,69 +20,69 @@ if __name__ == '__main__':
 
         try:
             # help command provide user to how to use instructs on command
-            if user_inp == 'help':
+            if user_inp.lower() == 'help':
                 scheduler_menu.info_menu()
                 continue
 
             # quit command for quit program
-            if user_inp == 'quit':
+            if user_inp.lower() == 'quit':
                 if len(scheduler_list) > 0:
                     print(
                         "Thank you for using Personal Daily Scheduler, Here is your daily activiy and also daily actiivty saved in text file.")
-                    schedule_logger.format_output(scheduler_list)
+                    output_dict = schedule_logger.format_output(scheduler_list)
+                    schedule_logger.printFormat(output_dict)
                     schedule_logger.write_to_file(scheduler_list)
                 else:
                     print("Thank you for using Personal Daily Scheduler")
                 break  # exit program
 
             # add command provide user to add time and activity name in schedule
-            if user_inp == "add":
+            if user_inp.lower() == "add":
                 user_inp = input("enter your daily routine name: ")
-                time = schedule_logger.format_time()
-                # scheduler_list.append(MyScheduler(user_inp, time))
+                time_inp = schedule_logger.format_time()
 
                 scheduler_list = my_scheduler._MyScheduler__add_to_myscheduler(
-                    user_inp, time, scheduler_list)
+                    user_inp, time_inp, scheduler_list)
 
                 print(Colors.FontColor.blue,
                       "Your schedule has been added to the list",
                       Colors.reset)
 
-                schedule_logger.format_output(scheduler_list)
+                output_dict = schedule_logger.format_output(scheduler_list)
+                schedule_logger.printFormat(output_dict)
                 continue
 
             # remove command provide user to remove data from schedule
-            if user_inp == "remove":
+            if user_inp.lower() == "remove":
                 user_inp = input(
                     "Enter the number of schleulder you want to remove: ")
-
-                # scheduler_list.pop(int(user_inp) - 1)
 
                 scheduler_list = my_scheduler._MyScheduler__remove_from_myscheduler(
                     user_inp, scheduler_list)
 
-                schedule_logger.format_output(scheduler_list)
+                output_dict = schedule_logger.format_output(scheduler_list)
+                schedule_logger.printFormat(output_dict)
+
                 print(Colors.FontColor.red,
                       "schedule has been removed from the list",
                       Colors.reset)
                 continue
 
             # change command provide user to modify data from schedule
-            if user_inp == "change":
+            if user_inp.lower() == "change":
                 index = input(
                     "enter the number of scheduler that you want to change: ")
                 user_inp_value = input("enter name activity name to set:")
-                time = schedule_logger.format_time()
+                time_inp_value = schedule_logger.format_time()
 
                 scheduler_list = my_scheduler._MyScheduler__change_myscheduler(
-                    index, user_inp_value, time, scheduler_list)
-
-                # scheduler_list[int(user_inp) - 1] = MyScheduler(user_inp_value, time)
+                    index, user_inp_value, time_inp_value, scheduler_list)
 
                 print(Colors.FontColor.yellow,
                       "your schedule has been updated",
                       Colors.reset)
-                schedule_logger.format_output(scheduler_list)
+                output_dict = schedule_logger.format_output(scheduler_list)
+                schedule_logger.printFormat(output_dict)
                 continue
         except:
             print("Invalid input, please enter valid input")

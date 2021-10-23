@@ -12,13 +12,23 @@ class ScheduleLogger():
 
     def format_output(self, list):
         """ file header set in text file using format method """
-        print(self.__format_str.format(self.__file_headers[0],
+
+        dict = {}
+
+        dict["headers"] = self.__format_str.format(self.__file_headers[0],
                                        self.__file_headers[1],
-                                       (self.__file_headers[2])))
-        print(self.__format_str.format("-------", "--------", "---------"))
+                                       (self.__file_headers[2]))
+
+        dict["headerFormat"] = self.__format_str.format("-------", "--------", "---------")
+
         for i in list:
-            print(self.__format_str.format(list.index(i) + 1, str(i.time),
-                                           i.name))
+            dict[list.index(i)] = self.__format_str.format(list.index(i) + 1, str(i.time),
+                                           i.name)
+        return  dict
+
+    def printFormat(self, dict):
+        for v in dict.values():
+            print(v)
 
     def write_to_file(self, list):
         """ Open myScheduler.txt and write file header and format and close
@@ -29,20 +39,29 @@ class ScheduleLogger():
                                          (self.__file_headers[2] + "\r\n")))
         f.write(
             self.__format_str.format("=========", "========", "==========\r\n"))
+
+        # test_string = ""
         for i in list:
+            # test_string = test_string + str(self.__format_str.format(list.index(i) + 1, str(i.time),i.name + "\r\n"))
             f.write(self.__format_str.format(list.index(i) + 1, str(i.time),
                                              i.name + "\r\n"))
-        f.write("\r\n")
+
+        # print(test_string)
+        # f.write("\r\n")
         f.close()
 
     def format_time(self):
         """ check Time format as HH:MM using datetime module """
         while True:
             try:
-                time = datetime.datetime.strptime(
-                    input('specify time in HH:MM format: '), "%H:%M").time()
+                time_prompt = input('specify time in HH:MM format: ')
+                time = self.validate_time(time_prompt)
                 break
             except:
                 print("Please enter correct time in HH:MM format")
                 continue
         return time
+
+    def validate_time(self, time):
+        """ check Time format as HH:MM using datetime module """
+        return datetime.datetime.strptime(time, "%H:%M").time()

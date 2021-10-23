@@ -81,7 +81,10 @@ def test_format_output():
 
     schedular_format = schedule_logger.format_output(scheduler_list)
 
-    assert (schedular_format == "Breakfast")
+    assert (schedular_format["headers"] == "  Index      Time      Activity ")
+    assert (schedular_format["headerFormat"] == " -------    --------  --------- ")
+    assert (schedular_format[0] == "    1         6:00     Wake up  ")
+    assert (schedular_format[1] == "    2         7:00     Exercise ")
 
 def test_write_to_file_output():
     scheduler_list = []
@@ -115,15 +118,11 @@ def test_write_to_file_output():
     assert (Lines[3] == "     2         7:00    Exercise")
 
 
-
 def test_validate_time():
-    assert (schedule_logger.format_time() == "Breakfast")
-    assert (schedule_logger.format_time() == "6:30")
-    assert (schedule_logger.format_time() == "Breakfast")
-    assert (schedule_logger.format_time() == "6:30")
-    assert (schedule_logger.format_time()== "Breakfast")
-    assert (schedule_logger.format_time() == "6:30")
-
+    assert(str(schedule_logger.validate_time("7:00")) == "07:00:00")
+    assert(str(schedule_logger.validate_time("07:00")) == "07:00:00")
+    assert(str(schedule_logger.validate_time("23:15")) == "23:15:00")
+    assert(str(schedule_logger.validate_time("7:00")) == "07:00:00")
 
 
 if __name__ == '__main__':
@@ -133,8 +132,8 @@ if __name__ == '__main__':
     test_add_to_scheduler()
     test_remove_from_scheduler()
     test_change_scheduler()
-    # test_format_output()
+    test_format_output()
     test_write_to_file_output()
-    # test_validate_time()
+    test_validate_time()
 
     print("All assetionss Pass")
