@@ -2,6 +2,7 @@ from ScheduleLogger import ScheduleLogger
 from SchedulerMenu import SchedulerMenu
 from MyScheduler import MyScheduler
 
+# assert unit test
 def test_add_to_scheduler():
     scheduler_list = []
     scheduler_list = my_scheduler._MyScheduler__add_to_myscheduler("Wake up",

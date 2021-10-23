@@ -1,7 +1,17 @@
+"""
+Your Name : Priyanka Vekariya
+Class: CS 521 - Fall 1
+Date: 23/10/2021
+Homework Problem - final project
+Description of Problem (my daily personal scheduler allow user to add ,
+remove and change activity):
+"""
+
 from ScheduleLogger import ScheduleLogger
 from SchedulerMenu import SchedulerMenu
 from MyScheduler import MyScheduler
 from SchedulerMenu import Colors
+
 
 if __name__ == '__main__':
     scheduler_menu = SchedulerMenu()
@@ -21,7 +31,7 @@ if __name__ == '__main__':
                                                             "remove, change): ")
 
         try:
-            # help command provide user to how to use instructs on command
+            # help command provide user to how to use instructions on command
             if user_inp.lower() == 'help':
                 scheduler_menu.info_menu()
                 continue
@@ -34,6 +44,7 @@ if __name__ == '__main__':
                         "your daily activiy and also daily actiivty saved in "
                         "text file.")
                     output_dict = schedule_logger.format_output(scheduler_list)
+                    # when user quit program
                     schedule_logger.printFormat(output_dict)
                     schedule_logger.write_to_file(scheduler_list)
                 else:

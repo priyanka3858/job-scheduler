@@ -5,6 +5,7 @@ class MyScheduler():
         self.time = time
 
     def __sub__(self, index):
+        """ magic method __sub__ while change activity """
         return int(index) - 1
 
     def __add_to_myscheduler(self, name, time, scheduler_list):
